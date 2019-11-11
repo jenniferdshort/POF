@@ -1,0 +1,14 @@
+Deposition:
+    - Orientation: 90, 0
+    - Mass: 25.0, 25.0
+
+Heater:
+    Temp: 200
+    Time: 10
+    
+Compression:
+    CompTime: 5
+
+Deposition:
+    - Orientation: 45, 45
+    - Mass: 25.0, 25.0
