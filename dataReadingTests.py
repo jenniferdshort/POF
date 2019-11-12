@@ -5,12 +5,13 @@ Created on Mon Nov 11 18:38:17 2019
 @author: Teal
 """
 
+# Imports
+import json
+import pickle
+
 # Testing some array reading/writing
 
-instructionList = [['Station', 'Deposition', 'Mass','25.1, 25.2','Orientation', '90,0'],
-            ['Station', 'Heater', 'Temp', '200','Time', '10'],
-            ['Station', 'Compress', 'Time','5'],
-            ['Station', 'Deposition', 'Mass','25.3','Orientation', '45,-45']]
+
 
 
 # Function for deposition 
@@ -38,7 +39,37 @@ def heat(temp, time, prevStep, nextStep):
     # Move away from heater towards next step
 
 
-def main():  
+def main():
+    
+    instructionList = [['Station', 'Deposition', 'Mass','25.1,25.2','Orientation', '90,0'],
+            ['Station', 'Heater', 'Temp', '200','Time', '10'],
+            ['Station', 'Compress', 'Time','5'],
+            ['Station', 'Deposition', 'Mass','25.3','Orientation', '45,-45']]
+    
+    # Reads data from file
+    data = []
+    with open('outPutFile2.JSON') as jsonFile:
+        data = jsonFile.readlines()
+
+        readData = []
+        for row in data:
+            #row = row.replace(',', '')
+            row = row.replace('[', '')
+            row = row.replace(']', '')
+            row = row.replace(' ', '')
+            row = row.replace('\n','')
+            row = row.replace('\\','')
+            rowInfo = row.split("\"")
+            while("" in rowInfo):
+                rowInfo.remove("")
+            while("," in rowInfo):
+                rowInfo.remove(",")
+            
+            #print(rowInfo)
+            readData.append(rowInfo)
+    
+    instructionList = readData
+    print(instructionList)
 
     for stepNum, step in enumerate(instructionList):
         #print(step)
@@ -69,7 +100,17 @@ def main():
                 
             
             heat(temp, time, prevStep, nextStep)
+            
+    with open('outPutFile1.txt', 'w') as fileHandle:
+        for item in instructionList:
+            fileHandle.write("%s\n" % item)
+            
+    with open('outPutFile2.JSON', 'w') as fileHandle:
+        for item in instructionList:
+            json.dump(item, fileHandle)
+            fileHandle.write('\n')
 
 # Reason for doing this: https://stackoverflow.com/questions/419163/what-does-if-name-main-do     
-if __name__ == "__main__":   
+if __name__ == "__main__":
+        # Trial reading data:
     main()
