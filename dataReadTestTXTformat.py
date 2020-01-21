@@ -6,8 +6,6 @@ Created on Mon Nov 11 18:38:17 2019
 """
 
 # Imports
-import json
-
 
 # Testing some array reading/writing
 
@@ -103,14 +101,7 @@ def main():
             
             heat(temp, time, prevStep, nextStep)
             
-    with open('outPutFile1.txt', 'w') as fileHandle:
-        for item in instructionList:
-            fileHandle.write("%s\n" % item)
-            
-    with open('outPutFile2.JSON', 'w') as fileHandle:
-        for item in instructionList:
-            json.dump(item, fileHandle)
-            fileHandle.write('\n')
+
 
 # Reason for doing this: https://stackoverflow.com/questions/419163/what-does-if-name-main-do     
 if __name__ == "__main__":
