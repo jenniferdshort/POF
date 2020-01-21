@@ -19,9 +19,11 @@ def deposite(orientation, mass):
     # Pads the length of the mass array, such that mass can be defined once instead of once per rotaiton
     while len(orientation) > len(mass):
         mass.append(mass[-1])
-        
+    
     # Orient to orientation[0]
+    # rotate(0)
     # Move to location of deposition 
+    # xMove(deposition)
     # Deposite until mass[0] achieved
     # Repeat
     
@@ -35,71 +37,89 @@ def heat(temp, time, prevStep, nextStep):
     # Wait for temp to reach
     # Move under heater for specified time
     # Move away from heater towards next step
+    
+def compress(compressTime):
+    
+    print("Compression Step")
+    
+    # Move to compression platform
+    # Assure correct orientation of platform
+    # Perform compression
 
 
 def main():
-    
-    instructionList = [['Station', 'Deposition', 'Mass','25.1,25.2','Orientation', '90,0'],
-            ['Station', 'Heater', 'Temp', '200','Time', '10'],
-            ['Station', 'Compress', 'Time','5'],
-            ['Station', 'Deposition', 'Mass','25.3','Orientation', '45,-45']]
-    
-    # Reads data from file
-    data = []
-    with open('outPutFile2.JSON') as jsonFile:
-        data = jsonFile.readlines()
+      
 
-        readData = []
-        for row in data:
-            #row = row.replace(',', '')
-            row = row.replace('[', '')
-            row = row.replace(']', '')
-            row = row.replace(' ', '')
-            row = row.replace('\n','')
-            row = row.replace('\\','')
-            rowInfo = row.split("\"")
-            while("" in rowInfo):
-                rowInfo.remove("")
-            while("," in rowInfo):
-                rowInfo.remove(",")
-            
-            #print(rowInfo)
-            readData.append(rowInfo)
-            
+    # Opens files, and reads contents into list format
+    inputFile = open("testInputFileTXT.txt")
+    rawInput = inputFile.readlines()
     
-    instructionList = readData
-    exit
-    print(instructionList)
+    inputFile.close()   #Closes the input file when done with it
+    
+    rawInput = [s.strip("\n") for s in rawInput] # strips out newline char
+    rawInput = [s.replace(" ","") for s in rawInput] # Removes all spaces
+    
 
-    for stepNum, step in enumerate(instructionList):
-        #print(step)
+    inputData = [] # Initializes input data as list
+    # Iteratively reads each line, and splits by the ':' char to make a 2d list array
+    for line in rawInput:
+        
+        line = line.split(";") #splits by ";" to make easier to deal with
+        inputData.append(line)
+    
+    # Iteratively reads each line in input data, and performs the desired task
+    # stepNum is iterator, so know what step we're on as per
+    # https://stackoverflow.com/questions/3162271/get-loop-count-inside-a-python-for-loop
+    for stepNum, step in enumerate(inputData):
+        
+        print(step)
         
         if "Deposition" in step:
+            
+            # Extracts mass as list
             mass = step[step.index("Mass")+1]
             mass = mass.split(',')
-    
+
+            # Extracts orientation as list
             orientation = step[step.index("Orientation")+1]
             orientation = orientation.split(',')
             
+            # Calls deposition function
             deposite(orientation, mass)
-        
-        if "Heater" in step:
+            
+        elif "Heater" in step:
+            
+            # Extracts temp as a number
             temp = step[step.index("Temp")+1]
+            
+            # Extracts time as a number
             time = step[step.index("Time")+1]
             
-            prevStep = instructionList[stepNum-1][1] # finds previous step
+            prevStep = inputData[stepNum-1][1] # finds previous step
             
             # Finds next step, if it exists
-            if stepNum < len(instructionList):
-                nextStep = instructionList[stepNum+1][1]
+            if stepNum < len(inputData):
+                nextStep = inputData[stepNum+1][1]
             else: 
                 nextStep = -1
             
-            #print("Prev step", prevStep)
-            #print("Next step", nextStep)
-                
-            
+            # Calls heater function            
             heat(temp, time, prevStep, nextStep)
+            
+        elif "Compress" in step:
+            
+            # Extracts compression time as time in seconds
+            compressTime = step[(step.index("Time")+1)]
+            
+            compress(compressTime)
+        
+        # If nothing is readable, print error
+        else:
+            print("Step Error")
+            
+    
+    print("Program End")
+
             
 
 
