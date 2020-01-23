@@ -15,6 +15,14 @@ def initialize():
     xAxisLocal = 0
     
     # Stores step number for rotation axis
-    global rotationLocal
-    rotationLocal = 0
+    global rotateAxisLocal
+    rotateAxisLocal = 0
+    
+    # Stores step number for z axis
+    global zAxisLocal
+    zAxisLocal = 0
+    
+    # Stores total mass fed
+    global fedMass
+    fedMass = float(0)
     
