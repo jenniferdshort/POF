@@ -3,11 +3,11 @@ import time
 GPIO.setmode(GPIO.BOARD)
 GPIO.setwarnings(False)
 
-#import globals    //accesses the global variables file
+import globals    #//accesses the global variables file
 
-initialX = globals.x
-initialR = globals.r
-initialz = globals.z
+initialX = globals.xAxisLocal
+initialR = globals.rotateAxisLocal
+initialz = globals.zAxisLocal
 
 def pulse(pin,delay):
     GPIO.output(pin, GPIO.HIGH)
