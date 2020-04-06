@@ -6,21 +6,10 @@ Created on Wed Jan 22 11:56:55 2020
 """
 import globals 
 
+
 # Function to move from step count of A to step count of B, 
 # so the trapazoidal velocity curve code can be used for the X, Z, and rotation axis
 # Might not be beneficial how I have it? TBD
-def moveTrap(start, end, axis):
-    
-    # Read acceleration and deceleration values
-    # Figure out the time/distance for acceleration and decelleration
-    # Perform movement
-    
-    # Figure out which axis to control
-    if axis == "x": stepPin = 20
-    elif axis == "z": stepPin = 30
-    elif axis == "rot": stepPin = 40
-    else: print("Error in movement axis")
-    
 
 # X movement function
 def x(destination):
@@ -38,7 +27,7 @@ def x(destination):
 
     startStep = globals.xAxisLocal
     
-    moveTrap(startStep, endStep, "x")
+    # Integrate Connor's code here for x movement
     
     print("Moved to X: ", endStep)
     
@@ -54,15 +43,17 @@ def rotate(destinationAngle):
     # Calculate step count of destination angle
     # Move rotation
     
+    # Integrate Connor's code here for rotation
+    
     print("Rotated to angle: ", destinationAngle)
 
 # Z movement function   
-def z(desination):
+def z(destination):
     
     # Decipher destination from words to numbers
-    if desination == "up":
+    if destination == "up":
         destinationPosition = 500
-    elif desination == "down":
+    elif destination == "down":
         destinationPosition = 100
     else:
         print("Error in determining z destination")
@@ -74,6 +65,8 @@ def z(desination):
     # Read current position
     # Read target position
     # Only a binary movement, "up" or "down"
+    
+    # Integrate Connor's code here for x movement
     
     print("Z moved: ", destination)
 
