@@ -44,7 +44,7 @@ def x(position):
         xGoal = 7400
         
     elif position == "heating":
-        xGoal = 130600                   #TBD Experimentally
+        xGoal = 131400                   #TBD Experimentally
     
     elif position == "compression":
         xGoal = 130600 + 94300                   #TBD Experimentally
@@ -60,7 +60,8 @@ def x(position):
     
     #################MOVEMENT PARAMETERS#################
     acceleration = (39 / 1000000)
-    delayMin = 0.0001
+    delayMin = 0.000075
+    delayMin2 = 0.00004
     delayMax = 0.004
     delay = delayMax
     
@@ -77,17 +78,19 @@ def x(position):
         
         if moveSteps <= midpoint:
             if delay >= delayMin:           #accelerating
-                delay -= acceleration
+                delay -= (acceleration / 3)
             
             else:                           #cruising
                 cruiseSteps += 1
+                if (delay > delayMin2):
+                    delay -= (acceleration / 10400)
 
         else:
             if cruiseSteps:                 #cruising
                 cruiseSteps -= 1
                 
             else:                           #decelerating
-                delay += acceleration
+                delay += (acceleration / 100)
         
         moveSteps += 1
         

@@ -12,7 +12,7 @@ import home
 #move.z("up")
 
 #move.x("deposition")
-#move.x("heating")
+move.x("heating")
 #move.x("compression")
 #move.x("end")
 

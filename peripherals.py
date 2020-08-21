@@ -34,28 +34,40 @@ def auger_pulse(duration):
     GPIO.output(mediaDep, GPIO.HIGH)
     time.sleep(pd)
     GPIO.output(mediaDep, GPIO.LOW)
-    
-    time.sleep(2.5)
 
 #################SCALE READING#################
+def tare():
+    dothingstotarethescale
 
-
-
-
-
-
+def mass_dispense(massGoal): #Looks like 20g is a decent guesstimate for one layer
+    largeDiff = 7 #grams
+    tolerance = 2 #grams
+    
+    mass = serial.read.mass.stuff
+    difference = massGoal - mass
+    
+    while(difference > tolerance):
+        if(abs(difference) > largeDiff):
+            auger_pulse("long")
+            time.sleep(0.5)
+            
+        else:
+            auger_pulse("short")
+            time.sleep(2.5)
+        
+        mass = serial.read.mass.stuff
+        difference = massGoal - mass
 
 #################IR HEATER CONTROL#################
+def heat_on():
+    GPIO.output(heater, GPIO.HIGH)
 
-
-
-
-
-
-
+def heat_off():
+    GPIO.output(heater,GPIO.LOW)
 
 #################SOLENOID ACTUATION#################
 def compress():
     GPIO.output(solenoid, GPIO.HIGH)
     time.sleep(2)
     GPIO.output(solenoid, GPIO.LOW)
+    time.sleep(0.25)

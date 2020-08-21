@@ -42,7 +42,7 @@ def pulse(pin, delay):
     time.sleep(delay)
     
 #################SPEED VALUES#################
-pdX = 0.00055
+pdX = 0.0005
 pdR = 0.0012
 pdZ = 0.002
 
@@ -70,3 +70,4 @@ def home_axes():
     while(GPIO.input(zSensor) == 0):
         pulse(zPul, pdZ)
     global_variables.set_to("z",0)
+    move.z("up")
