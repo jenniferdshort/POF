@@ -1,7 +1,0 @@
-Station; Deposition; Mass; 25.1,25.2; Orientation; 90,0,45,-45
-Station; Heater; Temp; 200; Time; 10
-Station; Compress; Time; 5
-Station; Deposition; Mass; 25.3; Orientation; 45,-45
-Station; Heater; Temp; 200; Time; 10
-Station; Deposition; Mass; 25.3; Orientation; 45,-45
-Station; Deposition; Mass;6 ; Orientation; 60, -60, 120
