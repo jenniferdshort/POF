@@ -12,15 +12,15 @@ GPIO.setmode(GPIO.BOARD)
 GPIO.setwarnings(False)
 
 #################TESTING EACH PERIPHERAL#################
-peripherals.auger_pulse("long")
-time.sleep(2)
+#peripherals.auger_pulse("long")
+#time.sleep(3)
 #peripherals.auger_pulse("short")
-time.sleep(1)
-
-#peripherals.heat_on()
-#time.sleep(30)
-#peripherals.heat_off()
 #time.sleep(1)
+
+peripherals.heat_on()
+time.sleep(60)
+peripherals.heat_off()
+time.sleep(1)
 
 #peripherals.compress()
 #peripherals.compress()

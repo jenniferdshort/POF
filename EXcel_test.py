@@ -22,7 +22,6 @@ print(data)
 #print(data)
 
 for i in range(len(data)):
-    try:
         layerNum = data['Layer #'][i]
         layerMass = data['Mass (g)'][i]
         layerAngle = data['Fiber Orientation'][i]
@@ -30,6 +29,16 @@ for i in range(len(data)):
         print("Layer #%d, Mass:%d, Orientation:%d"%(layerNum, layerMass, layerAngle))
         
         layer.make_layer(layerMass, layerAngle)
-    except:
-        print("Error interpreting recipe")
-        sys.exit()
+    
+    
+#    try:
+#        layerNum = data['Layer #'][i]
+#        layerMass = data['Mass (g)'][i]
+#        layerAngle = data['Fiber Orientation'][i]
+#        
+#        print("Layer #%d, Mass:%d, Orientation:%d"%(layerNum, layerMass, layerAngle))
+#        
+#        layer.make_layer(layerMass, layerAngle)
+#    except:
+#        print("Error interpreting recipe")
+#        sys.exit()

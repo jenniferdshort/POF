@@ -5,43 +5,36 @@ Created on Thu Aug 13 10:31:55 2020
 @author: chans
 """
 import move
-
-def first_layer(mass, angle):
-    move.x("deposition")
-    move.r(angle)
-    move.z("down")
-    #zero the scale
-    #dispense media using scale and motor
-    move.r(0)
-    move.z("up")
-    move.x("heating")
-    #heat for some amount of time
+import peripherals
+import time
 
 def make_layer(mass, angle):
     move.x("deposition") #select station from deposition, heating, compression, or end
+   
     move.r(angle) #select plate angle (not done yet due to still unknown scaling factor)
-    move.z("down") #select up or down
-    #zero the scale
-    #dispense media using scale and motor
-    move.z("up")
-    move.r(0)
-    move.x("heating")
-    #heat for some amount of time
-    move.x("compression")
-    #actuate pneumatic piston
-    move.x("heating")
-    #heat for some amount of time
+
+    peripherals.auger_pulse("long")
+    time.sleep(3)
+    peripherals.auger_pulse("short")
+    time.sleep(3)
     
-def last_layer(mass, angle):
-    move.x("deposition") #select station from deposition, heating, compression, or end
-    move.r(angle) #select plate angle (not done yet due to still unknown scaling factor)
-    move.z("down") #select up or down
-    #zero the scale
-    #dispense media using scale and motor
     move.r(0)
-    move.z("up")
+    
+    peripherals.heat_on()
+    
     move.x("heating")
-    #heat for some amount of time
+    time.sleep(30)
+    peripherals.heat_off()
+    
     move.x("compression")
-    #actuate pneumatic piston
-    move.x("end")
+    time.sleep(0.1)
+    
+    time.sleep(5)
+    time.sleep(0.1)
+    
+    peripherals.heat_on()
+    
+    move.x("heating")
+    time.sleep(10)
+    
+    peripherals.heat_off()

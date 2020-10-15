@@ -6,6 +6,7 @@ Created on Thu Aug 13 11:11:51 2020
 """
 import move
 import home
+import peripherals
 
 home.home_axes()
 

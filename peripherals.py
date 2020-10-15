@@ -26,10 +26,10 @@ GPIO.setup(solenoid, GPIO.OUT)
 #################MEDIA DEPOSITION#################
 def auger_pulse(duration):
     if duration == "long":
-        pd = 0.17
+        pd = 0.2
         
     elif duration == "short":
-        pd = 0.075
+        pd = 0.1
 
     GPIO.output(mediaDep, GPIO.HIGH)
     time.sleep(pd)
