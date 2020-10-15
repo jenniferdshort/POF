@@ -7,18 +7,20 @@ Created on Thu Aug 13 11:11:51 2020
 import move
 import home
 
-#home.home_axes()
+home.home_axes()
+
+#peripherals.heat_off()
 
 #move.z("up")
 
 #move.x("deposition")
-move.x("heating")
+#move.x("heating")
 #move.x("compression")
 #move.x("end")
 
 
 #move.r(-180)
-#move.r(180)
+#move.r(-90)
 #move.r(0)
 
 #move.z("up")

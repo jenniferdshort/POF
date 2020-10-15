@@ -47,7 +47,7 @@ def x(position):
         xGoal = 131400                   #TBD Experimentally
     
     elif position == "compression":
-        xGoal = 130600 + 94300                   #TBD Experimentally
+        xGoal = 130600 + 94000                   #TBD Experimentally
         
     elif position == "end":
         xGoal = 1 * (68800 + 130600 + 94400)                  #TBD Experimentally

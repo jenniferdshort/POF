@@ -11,25 +11,25 @@ GPIO.setmode(GPIO.BOARD)
 GPIO.setwarnings(False)
 
 #################PIN DEFINITION#################
-mediaDep = 1
+mediaDep = 23
 GPIO.setup(mediaDep, GPIO.OUT)
 
-scaleIn = 2
-GPIO.setup(mediaDep, GPIO.IN)
+#scaleIn = 1
+#GPIO.setup(scaleIn, GPIO.IN)
 
-heater = 3
-GPIO.setup(mediaDep, GPIO.OUT)
+heater = 21
+GPIO.setup(heater, GPIO.OUT)
 
-solenoid = 4
-GPIO.setup(mediaDep, GPIO.OUT)
+solenoid = 19
+GPIO.setup(solenoid, GPIO.OUT)
 
 #################MEDIA DEPOSITION#################
 def auger_pulse(duration):
     if duration == "long":
-        pd = 0.25
+        pd = 0.17
         
     elif duration == "short":
-        pd = 0.1
+        pd = 0.075
 
     GPIO.output(mediaDep, GPIO.HIGH)
     time.sleep(pd)

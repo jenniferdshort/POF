@@ -17,21 +17,21 @@ xPul = 29                    #change to real pin
 GPIO.setup(xPul, GPIO.OUT)
 xDir = 31                    #change to real pin
 GPIO.setup(xDir, GPIO.OUT)
-xSensor = 15
+xSensor = 13
 GPIO.setup(xSensor, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 rPul = 33                    #change to real pin
 GPIO.setup(rPul, GPIO.OUT)
 rDir = 35                    #change to real pin
 GPIO.setup(rDir, GPIO.OUT)
-rSensor = 13
+rSensor = 11
 GPIO.setup(rSensor, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 zPul = 38                    #change to real pin
 GPIO.setup(zPul, GPIO.OUT)
 zDir = 40                    #change to real pin
 GPIO.setup(zDir, GPIO.OUT)
-zSensor = 11
+zSensor = 15
 GPIO.setup(zSensor, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 #################PULSE FUNCTION#################
@@ -70,4 +70,4 @@ def home_axes():
     while(GPIO.input(zSensor) == 0):
         pulse(zPul, pdZ)
     global_variables.set_to("z",0)
-    move.z("up")
+    #move.z("up")
