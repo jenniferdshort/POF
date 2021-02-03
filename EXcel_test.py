@@ -7,6 +7,9 @@ Created on Thu Aug 20 10:50:51 2020
 import pandas as pd
 import sys
 import layer
+import home
+
+home.home_axes()
 
 excel_file = 'POF_recipe_test.xlsx'
 data = pd.read_excel(excel_file) #Reads file and makes it a dataframe
