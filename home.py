@@ -66,8 +66,6 @@ def home_axes():
   
     GPIO.output(rDir, GPIO.HIGH)
     
-    GPIO.output(rDir, GPIO.LOW)
-    
     moveLater = 0
     
     while(GPIO.input(rSensor) == 0):
