@@ -26,6 +26,8 @@ rDir = 35                    #change to real pin
 GPIO.setup(rDir, GPIO.OUT)
 rSensor = 11
 GPIO.setup(rSensor, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+limit = 16
+GPIO.setup(rSensor, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 zPul = 38                    #change to real pin
 GPIO.setup(zPul, GPIO.OUT)
@@ -43,7 +45,7 @@ def pulse(pin, delay):
     
 #################SPEED VALUES#################
 pdX = 0.0005
-pdR = 0.0012
+pdR = 0.0006
 pdZ = 0.002
 
 def home_axes():
@@ -54,6 +56,16 @@ def home_axes():
     global_variables.set_to("x",0)
 
     #################R AXIS HOME#################
+    status = [0]
+    
+    while (sum(status) != 5):
+        pulse(rPul, pDr)
+        status = [] 
+        for i in range (5):
+            status.append(GPIO.input(limit))
+  
+    GPIO.output(rDir, GPIO.HIGH)
+    
     GPIO.output(rDir, GPIO.LOW)
     
     moveLater = 0
@@ -62,7 +74,7 @@ def home_axes():
         pulse(rPul, pdR)
         moveLater = 1
     if(moveLater):
-        move.r(25 / 25.93)
+        move.r(-1)
     global_variables.set_to("r",0)
 
     #################Z AXIS HOME#################
